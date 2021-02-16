@@ -13,7 +13,6 @@ let questions = ['Who was the first American woman in space? ','True or false: 5
 let correctAnswers = ['Sally Ride','True','40','Trajectory','3'];
 let candidateAnswers = [];
 
-
 function askForName() {
   // TODO 1.1b: Ask for candidate's name //
   candidateName = input.question(`What is your name? `);
@@ -27,20 +26,42 @@ function askQuestion() {
 }
 
 function gradeQuiz(candidateAnswers) {
-
+    
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
-  
+  /*
+  Compare the candidate answers with the correct answers,
+  Calculate the candidate's score as a percentage (grade = percentage)
+  Convey to the candidate if they have passed the quiz with an 80% or if they have failed.
+  percentage = (Number of Correct Answers) / (Number of Quiz Questions) * 100
+  */
+
   console.log(`\n\t\t\t\t* * * RESULTS * * *\n\nCandidate Name: ${candidateName}`);
 
-  for (i = 0; i < questions.length ; i++) {
+  for (i = 0; i < questions.length; i++) {
     console.log(`
 ${i+1}) ${questions[i]}
 Your Answer: ${candidateAnswers[i]}
 Correct Answer: ${correctAnswers[i]}`)
   }
 
-  console.log(`\n>>> Overall Grade: 40% (2 of 5 responses correct) <<<\n>>> Status: FAILED <<<`); 
-  let grade;
+  let numCorrect = 0;
+  let status = "FAILED";
+
+  for (i = 0; i < questions.length; i++) {
+    if (candidateAnswers[i].toLowerCase() === correctAnswers[i].toLowerCase()) {
+      numCorrect+=1;
+    } 
+  }
+
+  console.log(numCorrect);
+  let grade = ((numCorrect/questions.length) * 100);
+
+  if (grade >= 80) {
+    status = "PASSED";
+  } 
+
+  console.log(`\n>>> Overall Grade: ${grade}% (${numCorrect} of ${questions.length} responses correct) <<<\n>>> Status: ${status} <<<`);
+
   return grade;
 }
 
