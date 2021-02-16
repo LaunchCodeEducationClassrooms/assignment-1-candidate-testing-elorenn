@@ -29,45 +29,18 @@ function askQuestion() {
 function gradeQuiz(candidateAnswers) {
 
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
-  // if (correctAnswer.toLowerCase() === candidateAnswer.toLowerCase()) {
-  //   console.log(`You are correct!`);
-  // } else {
-  //   console.log(`Sorry. ${candidateAnswer} is incorrect. The correct answer is ${correctAnswer}.`);
-  // }
   
-  console.log(`
-        * * * RESULTS * * * 
+  console.log(`\n\t\t\t\t* * * RESULTS * * *\n\nCandidate Name: ${candidateName}`);
 
-Candidate Name: ${candidateName}
+  for (i = 0; i < questions.length ; i++) {
+    console.log(`
+${i+1}) ${questions[i]}
+Your Answer: ${candidateAnswers[i]}
+Correct Answer: ${correctAnswers[i]}`)
+  }
 
-1) ${questions[0]}
-Your Answer: ${candidateAnswers[0]}
-Correct Answer: ${correctAnswers[0]}
-
-2)  ${questions[1]}
-Your Answer:  ${candidateAnswers[1]}
-Correct Answer:  ${correctAnswers[1]}
-
-3) ${questions[2]}
-Your Answer:  ${candidateAnswers[2]}
-Correct Answer:  ${correctAnswers[2]}
-
-4)  ${questions[3]}
-Your Answer:  ${candidateAnswers[3]}
-Correct Answer:  ${correctAnswers[3]}
-
-5)  ${questions[4]}
-Your Answer:  ${candidateAnswers[4]}
-Correct Answer:  ${correctAnswers[4]}
-
->>> Overall Grade: 40% (2 of 5 responses correct) <<<
->>> Status: FAILED <<<
-
-  `);
-
+  console.log(`\n>>> Overall Grade: 40% (2 of 5 responses correct) <<<\n>>> Status: FAILED <<<`); 
   let grade;
-  
-
   return grade;
 }
 
