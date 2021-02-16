@@ -53,7 +53,6 @@ Correct Answer: ${correctAnswers[i]}`)
     } 
   }
 
-  console.log(numCorrect);
   let grade = ((numCorrect/questions.length) * 100);
 
   if (grade >= 80) {
