@@ -26,21 +26,20 @@ function askQuestion() {
   }
 }
 
-function gradeQuiz(candidateAnswers) {
-
-  // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly //  
-
-  function answersDisplay() {
-    let results = [];
-    for (i = 0; i < questions.length ; i++) {
-      results[i] = `\n${i+1}) ${questions[i]}
-  Your Answer: ${candidateAnswers[i]}
-  Correct Answer: ${correctAnswers[i]}`;
-    }
-    return(results.join("\n"));
+function answersDisplay() {
+  let results = [];
+  for (i = 0; i < questions.length ; i++) {
+    results[i] = `\n${i+1}) ${questions[i]}
+Your Answer: ${candidateAnswers[i]}
+Correct Answer: ${correctAnswers[i]}`;
   }
+  return(results.join("\n"));
+}
 
+function gradeQuiz(candidateAnswers) {
+  // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly //  
   let numCorrect = 0;
+  let grade = 0;
   let status = "FAILED";  
 
   for (i = 0; i < questions.length; i++) {
@@ -48,9 +47,7 @@ function gradeQuiz(candidateAnswers) {
       numCorrect+=1;
     } 
   }
-
-  let grade = ((numCorrect/questions.length) * 100);
-
+  grade = ((numCorrect/questions.length) * 100);
   if (grade >= 80) {
     status = "PASSED";
   } 
@@ -60,9 +57,7 @@ function gradeQuiz(candidateAnswers) {
   let display = nameDisplay + answersDisplay() + gradeDisplay;
 
   console.log(display);
-
   return grade;  
-
 }
 
 function runProgram() {
