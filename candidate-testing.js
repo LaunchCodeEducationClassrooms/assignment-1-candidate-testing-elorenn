@@ -9,9 +9,10 @@ let candidateName = "";
 let question = 'Who was the first American woman in space? ';
 let correctAnswer = "Sally Ride";
 let candidateAnswer = "";
-let questions = ['Who was the first American woman in space? ','True or false: 5 kilometer == 5000 meters? ','(5 + 3)/2 * 10 = ? ', `Given the array [8, 'Orbit', 'Trajectory', 45], what entry is at index 2? `,'What is the minimum crew size for the ISS? '];
-let correctAnswers = ['Sally Ride','true','40','Trajectory','3'];
+let questions = ['Who was the first American woman in space? ','True or false: 5000 meters = 5 kilometers. ','(5 + 3)/2 * 10 = ? ', `Given the array [8, 'Orbit', 'Trajectory', 45], what entry is at index 2? `,'What is the minimum crew size for the ISS? '];
+let correctAnswers = ['Sally Ride','True','40','Trajectory','3'];
 let candidateAnswers = [];
+
 
 function askForName() {
   // TODO 1.1b: Ask for candidate's name //
@@ -26,26 +27,21 @@ function askQuestion() {
 }
 
 function gradeQuiz(candidateAnswers) {
-    
-  // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
-  /*
-  Compare the candidate answers with the correct answers,
-  Calculate the candidate's score as a percentage (grade = percentage)
-  Convey to the candidate if they have passed the quiz with an 80% or if they have failed.
-  percentage = (Number of Correct Answers) / (Number of Quiz Questions) * 100
-  */
 
-  console.log(`\n\t\t\t\t* * * RESULTS * * *\n\nCandidate Name: ${candidateName}`);
+  // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly //  
 
-  for (i = 0; i < questions.length; i++) {
-    console.log(`
-${i+1}) ${questions[i]}
-Your Answer: ${candidateAnswers[i]}
-Correct Answer: ${correctAnswers[i]}`)
+  function answersDisplay() {
+    let results = [];
+    for (i = 0; i < questions.length ; i++) {
+      results[i] = `\n${i+1}) ${questions[i]}
+  Your Answer: ${candidateAnswers[i]}
+  Correct Answer: ${correctAnswers[i]}`;
+    }
+    return(results.join("\n"));
   }
 
   let numCorrect = 0;
-  let status = "FAILED";
+  let status = "FAILED";  
 
   for (i = 0; i < questions.length; i++) {
     if (candidateAnswers[i].toLowerCase() === correctAnswers[i].toLowerCase()) {
@@ -58,10 +54,15 @@ Correct Answer: ${correctAnswers[i]}`)
   if (grade >= 80) {
     status = "PASSED";
   } 
+  
+  let nameDisplay = `\n\t\t\t\t* * * RESULTS * * *\n\nCandidate Name: ${candidateName}\n`; 
+  let gradeDisplay = `\n\n>>> Overall Grade: ${grade}% (${numCorrect} of ${questions.length} responses correct) <<<\n>>> Status: ${status} <<<`; 
+  let display = nameDisplay + answersDisplay() + gradeDisplay;
 
-  console.log(`\n>>> Overall Grade: ${grade}% (${numCorrect} of ${questions.length} responses correct) <<<\n>>> Status: ${status} <<<`);
+  console.log(display);
 
-  return grade;
+  return grade;  
+
 }
 
 function runProgram() {
